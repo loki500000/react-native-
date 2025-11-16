@@ -8,6 +8,27 @@ A comprehensive, production-ready tool to convert Figma designs into React Nativ
 
 **✅ 100% Expo Compatible** - All generated code works perfectly with Expo (no native modules, no ejecting needed). See [EXPO_COMPATIBILITY.md](./EXPO_COMPATIBILITY.md) for details.
 
+---
+
+## 🚀 Two Ways to Use This Project
+
+### 1. **CLI Tool** (This README) - For direct code generation
+Use the standalone CLI to convert Figma designs to React Native code. Perfect for:
+- Quick conversions
+- CI/CD pipelines
+- Existing projects
+
+### 2. **Full IDE Platform** - Complete AI-powered development environment
+→ **[See README_FULL_STACK.md](README_FULL_STACK.md)** for the full AI-powered IDE with:
+- 🤖 Groq AI agents (4 specialized agents, 750 tokens/sec)
+- 💻 Custom Theia IDE with Figma Explorer and AI Composer
+- 📱 Live preview with Expo Snack API
+- 🗄️ Backend integration (MCP: Bubble, Supabase, Firebase)
+- 🖥️ Tauri desktop app (3MB native wrapper)
+- **[Installation Guide](INSTALLATION.md)** | **[Architecture](FULL_STACK_ARCHITECTURE.md)**
+
+---
+
 ## Features
 
 ### Core Capabilities

@@ -4,6 +4,7 @@
     "ide-app",
     "extensions/*",
     "ai-engine",
+    "preview-server",
     "mcp-servers/*",
     "desktop-app"
   ],

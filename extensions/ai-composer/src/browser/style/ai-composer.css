@@ -1,0 +1,305 @@
+/**
+ * AI Composer Styles
+ */
+
+.ai-composer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--theia-layout-color1);
+  color: var(--theia-foreground);
+}
+
+/* Header */
+.composer-header {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--theia-panel-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--theia-panel-background);
+}
+
+.composer-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.agent-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.agent-selector label {
+  color: var(--theia-descriptionForeground);
+}
+
+.agent-selector select {
+  padding: 5px 8px;
+  font-size: 12px;
+  background-color: var(--theia-input-background);
+  color: var(--theia-input-foreground);
+  border: 1px solid var(--theia-input-border);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.agent-selector select:focus {
+  outline: 1px solid var(--theia-focusBorder);
+}
+
+/* Messages Container */
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Message */
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  max-width: 90%;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background-color: var(--theia-editor-background);
+  border: 1px solid var(--theia-panel-border);
+}
+
+.message.generating {
+  opacity: 0.8;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.message-role {
+  font-weight: 600;
+}
+
+.message-time {
+  font-size: 10px;
+}
+
+.message-content {
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  background-color: var(--theia-foreground);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.generating-text {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Generated Files */
+.generated-files {
+  margin-top: 8px;
+  padding: 10px;
+  background-color: var(--theia-list-inactiveSelectionBackground);
+  border-radius: 4px;
+  border: 1px solid var(--theia-panel-border);
+}
+
+.files-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.apply-button {
+  padding: 5px 12px;
+  font-size: 11px;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.apply-button:hover {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background-color: var(--theia-editor-background);
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.file-icon {
+  font-size: 14px;
+}
+
+.file-path {
+  flex: 1;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+
+.file-size {
+  font-size: 10px;
+  color: var(--theia-descriptionForeground);
+}
+
+/* Input Container */
+.input-container {
+  padding: 12px 15px;
+  border-top: 1px solid var(--theia-panel-border);
+  background-color: var(--theia-panel-background);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 13px;
+  font-family: inherit;
+  background-color: var(--theia-input-background);
+  color: var(--theia-input-foreground);
+  border: 1px solid var(--theia-input-border);
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 60px;
+  max-height: 150px;
+}
+
+.message-input:focus {
+  outline: 1px solid var(--theia-focusBorder);
+}
+
+.message-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-button {
+  align-self: flex-end;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tips */
+.tips-container {
+  padding: 8px 15px;
+  background-color: var(--theia-panel-background);
+  border-top: 1px solid var(--theia-panel-border);
+}
+
+.tip {
+  font-size: 11px;
+  color: var(--theia-descriptionForeground);
+  font-style: italic;
+}
+
+/* Scrollbar Styling */
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: var(--theia-scrollbarSlider-background);
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: var(--theia-scrollbarSlider-hoverBackground);
+  border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: var(--theia-scrollbarSlider-activeBackground);
+}

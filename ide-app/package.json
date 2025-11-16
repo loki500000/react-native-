@@ -18,7 +18,9 @@
     "@theia/scm": "^1.45.0",
     "@theia/debug": "^1.45.0",
     "@theia/plugin-ext": "^1.45.0",
-    "@theia/plugin-ext-vscode": "^1.45.0"
+    "@theia/plugin-ext-vscode": "^1.45.0",
+    "@figma-studio/figma-explorer": "1.0.0",
+    "@figma-studio/ai-composer": "1.0.0"
   },
   "devDependencies": {
     "@theia/cli": "^1.45.0"

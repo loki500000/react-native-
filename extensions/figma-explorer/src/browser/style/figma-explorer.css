@@ -1,0 +1,258 @@
+/**
+ * Figma Explorer Styles
+ */
+
+.figma-explorer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--theia-layout-color1);
+  color: var(--theia-foreground);
+}
+
+/* Header */
+.explorer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--theia-panel-border);
+}
+
+.explorer-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.explorer-header button {
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.explorer-header button:hover {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+.explorer-header button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--theia-activityBar-background);
+  border-top-color: var(--theia-focusBorder);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  margin-top: 15px;
+  font-size: 13px;
+  color: var(--theia-descriptionForeground);
+}
+
+/* File List */
+.file-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.file-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: var(--theia-list-inactiveSelectionBackground);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.file-item:hover {
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.file-thumbnail {
+  width: 60px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 3px;
+  background-color: var(--theia-editor-background);
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.file-name {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.file-modified {
+  font-size: 11px;
+  color: var(--theia-descriptionForeground);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--theia-descriptionForeground);
+}
+
+.empty-state p {
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.empty-state .hint {
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* File Tree */
+.file-tree {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tree-header {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--theia-panel-border);
+}
+
+.tree-header button {
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: transparent;
+  color: var(--theia-foreground);
+  border: 1px solid var(--theia-panel-border);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.tree-header button:hover {
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.tree-header h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Tree Nodes */
+.tree-nodes {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.figma-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  margin: 2px 0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.figma-node:hover {
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.figma-node.selected {
+  background-color: var(--theia-list-activeSelectionBackground);
+  color: var(--theia-list-activeSelectionForeground);
+}
+
+.node-icon {
+  font-size: 14px;
+}
+
+.node-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.node-type {
+  font-size: 10px;
+  color: var(--theia-descriptionForeground);
+  text-transform: uppercase;
+  padding: 2px 6px;
+  background-color: var(--theia-badge-background);
+  border-radius: 2px;
+}
+
+.node-children {
+  margin-left: 0;
+}
+
+/* Tree Footer */
+.tree-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--theia-panel-border);
+}
+
+.selection-info {
+  font-size: 12px;
+  color: var(--theia-descriptionForeground);
+}
+
+.generate-button {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.generate-button:hover {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+.generate-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
