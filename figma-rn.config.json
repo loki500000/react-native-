@@ -1,0 +1,8 @@
+{
+  "styleType": "stylesheet",
+  "typescript": true,
+  "componentPrefix": "",
+  "extractAssets": true,
+  "responsive": true,
+  "designTokens": true
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Figma to React Native</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 16px;
+      background: #ffffff;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #000;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: block;
+      color: #333;
+    }
+
+    .select, .button {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 12px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .select {
+      cursor: pointer;
+    }
+
+    .button {
+      background: #18A0FB;
+      color: white;
+      border: none;
+      font-weight: 500;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+
+    .button:hover {
+      background: #0D8FE8;
+    }
+
+    .button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .button.secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    .button.secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .checkbox-group input {
+      margin-right: 8px;
+    }
+
+    .checkbox-group label {
+      font-size: 12px;
+      color: #333;
+    }
+
+    .status {
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .status.info {
+      background: #E3F2FD;
+      color: #1976D2;
+    }
+
+    .status.error {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    .status.success {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    #output {
+      display: none;
+      margin-top: 16px;
+    }
+
+    #code-output {
+      width: 100%;
+      height: 200px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 11px;
+      resize: vertical;
+      background: #f8f8f8;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Figma to React Native</h1>
+
+  <div id="status" class="status info">
+    Select layers to generate React Native code
+  </div>
+
+  <div class="section">
+    <label class="label">Style Type</label>
+    <select id="styleType" class="select">
+      <option value="stylesheet">StyleSheet</option>
+      <option value="styled-components">styled-components</option>
+      <option value="inline">Inline Styles</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <div class="checkbox-group">
+      <input type="checkbox" id="typescript" checked>
+      <label for="typescript">TypeScript</label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="responsive" checked>
+      <label for="responsive">Responsive (Auto Layout)</label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="extractAssets">
+      <label for="extractAssets">Extract Assets</label>
+    </div>
+  </div>
+
+  <div class="section">
+    <button id="generateBtn" class="button">Generate Code</button>
+    <button id="tokensBtn" class="button secondary">Extract Design Tokens</button>
+  </div>
+
+  <div id="output" class="section">
+    <label class="label">Generated Code</label>
+    <textarea id="code-output" readonly></textarea>
+    <button id="copyBtn" class="button">Copy to Clipboard</button>
+  </div>
+
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const tokensBtn = document.getElementById('tokensBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const statusEl = document.getElementById('status');
+    const outputEl = document.getElementById('output');
+    const codeOutputEl = document.getElementById('code-output');
+
+    let selectionCount = 0;
+
+    // Handle generate button
+    generateBtn.onclick = () => {
+      const config = {
+        styleType: document.getElementById('styleType').value,
+        typescript: document.getElementById('typescript').checked,
+        responsive: document.getElementById('responsive').checked,
+        extractAssets: document.getElementById('extractAssets').checked,
+      };
+
+      parent.postMessage({
+        pluginMessage: { type: 'generate', config }
+      }, '*');
+
+      setStatus('Generating code...', 'info');
+    };
+
+    // Handle tokens button
+    tokensBtn.onclick = () => {
+      parent.postMessage({
+        pluginMessage: { type: 'extract-tokens' }
+      }, '*');
+
+      setStatus('Extracting design tokens...', 'info');
+    };
+
+    // Handle copy button
+    copyBtn.onclick = () => {
+      codeOutputEl.select();
+      document.execCommand('copy');
+      setStatus('Copied to clipboard!', 'success');
+    };
+
+    // Handle messages from plugin
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+
+      if (msg.type === 'generated') {
+        displayGenerated(msg.components);
+      } else if (msg.type === 'tokens-extracted') {
+        displayCode(msg.code);
+      } else if (msg.type === 'error') {
+        setStatus(msg.message, 'error');
+      } else if (msg.type === 'selection-changed') {
+        selectionCount = msg.count;
+        updateGenerateButton();
+      }
+    };
+
+    function displayGenerated(components) {
+      const code = components.map(c => `// ${c.name}\n${c.code}`).join('\n\n// ---\n\n');
+      displayCode(code);
+      setStatus(`Generated ${components.length} component(s)`, 'success');
+    }
+
+    function displayCode(code) {
+      codeOutputEl.value = code;
+      outputEl.style.display = 'block';
+    }
+
+    function setStatus(message, type) {
+      statusEl.textContent = message;
+      statusEl.className = `status ${type}`;
+    }
+
+    function updateGenerateButton() {
+      if (selectionCount === 0) {
+        generateBtn.disabled = true;
+        setStatus('Select layers to generate code', 'info');
+      } else {
+        generateBtn.disabled = false;
+        setStatus(`${selectionCount} layer(s) selected`, 'info');
+      }
+    }
+
+    // Initial state
+    updateGenerateButton();
+  </script>
+</body>
+</html>
