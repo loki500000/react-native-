@@ -1,0 +1,300 @@
+/**
+ * Preview Panel Styles
+ */
+
+.preview-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--theia-layout-color1);
+  color: var(--theia-foreground);
+}
+
+/* Header */
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--theia-panel-border);
+  background-color: var(--theia-panel-background);
+}
+
+.preview-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.header-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.header-controls button {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.header-controls button:hover:not(:disabled) {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+.header-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.header-controls button.active {
+  background-color: var(--theia-focusBorder);
+  color: white;
+}
+
+/* Device Selector */
+.device-selector {
+  display: flex;
+  gap: 0;
+  padding: 10px 15px;
+  background-color: var(--theia-editor-background);
+  border-bottom: 1px solid var(--theia-panel-border);
+}
+
+.device-button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: transparent;
+  color: var(--theia-foreground);
+  border: 1px solid var(--theia-panel-border);
+  border-right: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.device-button:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.device-button:last-child {
+  border-right: 1px solid var(--theia-panel-border);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.device-button:hover:not(.active) {
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.device-button.active {
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border-color: var(--theia-button-background);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+  margin-top: 15px;
+  font-size: 13px;
+  color: white;
+}
+
+/* Preview Container */
+.preview-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: var(--theia-editor-background);
+}
+
+/* Empty State */
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--theia-descriptionForeground);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theia-foreground);
+}
+
+.empty-state p {
+  margin: 0 0 20px 0;
+  font-size: 13px;
+}
+
+.empty-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.step {
+  padding: 10px 20px;
+  background-color: var(--theia-list-inactiveSelectionBackground);
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: left;
+}
+
+/* QR Modal */
+.qr-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+}
+
+.qr-content {
+  position: relative;
+  background-color: var(--theia-editor-background);
+  border: 1px solid var(--theia-panel-border);
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 18px;
+  background-color: transparent;
+  color: var(--theia-foreground);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.qr-content h4 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.qr-code {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.qr-instructions {
+  margin: 0 0 20px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--theia-descriptionForeground);
+  text-align: left;
+}
+
+.qr-link {
+  display: flex;
+  gap: 8px;
+}
+
+.qr-link input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  background-color: var(--theia-input-background);
+  color: var(--theia-input-foreground);
+  border: 1px solid var(--theia-input-border);
+  border-radius: 4px;
+}
+
+.qr-link button {
+  padding: 8px 16px;
+  font-size: 12px;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.qr-link button:hover {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+/* Device Hint */
+.device-hint {
+  padding: 10px 15px;
+  background-color: var(--theia-notifications-background);
+  border-top: 1px solid var(--theia-panel-border);
+  text-align: center;
+  font-size: 11px;
+  color: var(--theia-descriptionForeground);
+}

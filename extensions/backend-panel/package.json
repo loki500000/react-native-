@@ -1,0 +1,27 @@
+{
+  "name": "@figma-studio/backend-panel",
+  "version": "1.0.0",
+  "description": "Theia extension for visualizing MCP backend connections",
+  "keywords": [
+    "theia-extension"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@theia/core": "^1.45.0",
+    "inversify": "^6.0.1",
+    "socket.io-client": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/backend-panel-frontend-module"
+    }
+  ]
+}

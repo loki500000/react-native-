@@ -253,8 +253,8 @@ export class AgentManager {
   private backend: BackendAgent;
   private developer: DeveloperAgent;
 
-  constructor(apiKey: string) {
-    this.groq = new GroqClient({ apiKey });
+  constructor(groqClient: GroqClient) {
+    this.groq = groqClient;
     this.orchestrator = new OrchestratorAgent(this.groq);
     this.designer = new DesignerAgent(this.groq);
     this.backend = new BackendAgent(this.groq);
@@ -267,6 +267,17 @@ export class AgentManager {
   async execute(prompt: string, context?: AgentContext): Promise<AgentResponse> {
     // Use orchestrator to coordinate
     return await this.orchestrator.execute(prompt, context);
+  }
+
+  /**
+   * Execute specific agent
+   */
+  async executeAgent(
+    type: 'designer' | 'backend' | 'developer' | 'orchestrator',
+    options: { prompt: string; context?: AgentContext }
+  ): Promise<AgentResponse> {
+    const agent = this.getAgent(type);
+    return await agent.execute(options.prompt, options.context);
   }
 
   /**
@@ -283,6 +294,23 @@ export class AgentManager {
       case 'orchestrator':
         return this.orchestrator;
     }
+  }
+
+  /**
+   * Extract files from AI response
+   */
+  extractFilesFromResponse(response: string): { path: string; content: string }[] {
+    const files: { path: string; content: string }[] = [];
+    const codeBlockRegex = /```(?:typescript|tsx|javascript|jsx)?\n(?:\/\/ (.*\.tsx?)\n)?([\s\S]*?)```/g;
+
+    let match;
+    while ((match = codeBlockRegex.exec(response)) !== null) {
+      const fileName = match[1] || 'Component.tsx';
+      const content = match[2];
+      files.push({ path: fileName, content });
+    }
+
+    return files;
   }
 
   /**
