@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "name": "@figma-studio/ide-app",
+  "version": "1.0.0",
+  "description": "Theia-based IDE for Figma to React Native development",
+  "dependencies": {
+    "@theia/core": "^1.45.0",
+    "@theia/editor": "^1.45.0",
+    "@theia/filesystem": "^1.45.0",
+    "@theia/workspace": "^1.45.0",
+    "@theia/navigator": "^1.45.0",
+    "@theia/terminal": "^1.45.0",
+    "@theia/outline-view": "^1.45.0",
+    "@theia/markers": "^1.45.0",
+    "@theia/messages": "^1.45.0",
+    "@theia/monaco": "^1.45.0",
+    "@theia/git": "^1.45.0",
+    "@theia/scm": "^1.45.0",
+    "@theia/debug": "^1.45.0",
+    "@theia/plugin-ext": "^1.45.0",
+    "@theia/plugin-ext-vscode": "^1.45.0"
+  },
+  "devDependencies": {
+    "@theia/cli": "^1.45.0"
+  },
+  "scripts": {
+    "prepare": "theia build --mode development",
+    "build": "theia build --mode production",
+    "start": "theia start --hostname=0.0.0.0 --port=3000",
+    "watch": "theia build --watch --mode development"
+  },
+  "theia": {
+    "target": "browser",
+    "frontend": {
+      "config": {
+        "applicationName": "Figma Studio AI",
+        "preferences": {
+          "files.enableTrash": false
+        }
+      }
+    },
+    "generator": {
+      "config": {
+        "preloadTemplate": "./resources/preload.html"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": "3.0.0",
+  "packages": [
+    "ide-app",
+    "extensions/*",
+    "ai-engine",
+    "mcp-servers/*",
+    "desktop-app"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}
