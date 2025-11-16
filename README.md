@@ -6,6 +6,8 @@
 
 A comprehensive, production-ready tool to convert Figma designs into React Native code. Built by analyzing and combining the best features from 5 leading Figma-to-code repositories.
 
+**✅ 100% Expo Compatible** - All generated code works perfectly with Expo (no native modules, no ejecting needed). See [EXPO_COMPATIBILITY.md](./EXPO_COMPATIBILITY.md) for details.
+
 ## Features
 
 ### Core Capabilities
@@ -43,6 +45,18 @@ The generator intelligently detects component types based on naming patterns and
 ```bash
 npm install -g figma-to-react-native
 ```
+
+### For Expo Projects
+
+```bash
+# In your Expo project
+npm install figma-to-react-native --save-dev
+
+# Or use npx (no installation needed)
+npx figma-to-react-native generate <file-id>
+```
+
+See [EXPO_COMPATIBILITY.md](./EXPO_COMPATIBILITY.md) for complete Expo integration guide.
 
 ### Figma Plugin
 
