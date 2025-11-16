@@ -8,12 +8,17 @@ import { NodeParser } from './parser/node-parser';
 import { TokenExtractor } from './parser/token-extractor';
 import { StyleSheetGenerator } from './generator/stylesheet-generator';
 import { StyledComponentsGenerator } from './generator/styled-components-generator';
+import { InlineGenerator } from './generator/inline-generator';
+import { AssetExtractor } from './asset/asset-extractor';
+import { NodeValidator } from './validator/node-validator';
 import { GeneratorConfig, GeneratorOutput, GeneratedComponent } from '../types';
 
 export class FigmaConverter {
   private api: FigmaAPI;
   private parser: NodeParser;
   private tokenExtractor: TokenExtractor;
+  private assetExtractor: AssetExtractor;
+  private validator: NodeValidator;
 
   constructor(
     private token: string,
@@ -22,6 +27,8 @@ export class FigmaConverter {
     this.api = new FigmaAPI(token);
     this.parser = new NodeParser();
     this.tokenExtractor = new TokenExtractor();
+    this.assetExtractor = new AssetExtractor(this.api);
+    this.validator = new NodeValidator();
   }
 
   /**
@@ -30,6 +37,17 @@ export class FigmaConverter {
   async convert(fileId: string, nodeIds?: string[]): Promise<GeneratorOutput> {
     // Fetch Figma file
     const figmaFile = await this.api.getFile(fileId);
+
+    // Validate file structure
+    const validation = this.validator.validateFile(figmaFile);
+    if (!validation.valid) {
+      throw new Error(`Figma file validation failed:\n${validation.errors.join('\n')}`);
+    }
+
+    // Log warnings if any
+    if (validation.warnings.length > 0) {
+      console.warn('Warnings:', validation.warnings);
+    }
 
     // If specific nodes requested, fetch them
     let nodes: any[];
@@ -66,10 +84,15 @@ export class FigmaConverter {
     const indexCode = this.generateIndexFile(components);
 
     // Handle assets if requested
-    const assets: any[] = [];
+    let assets: any[] = [];
     if (this.config.extractAssets) {
-      // TODO: Implement asset extraction
-      // This would involve finding image nodes and downloading them
+      // Extract assets from all nodes
+      for (const node of nodes) {
+        await this.assetExtractor.extractAssets(node, fileId);
+      }
+
+      // Download assets to output directory
+      assets = await this.assetExtractor.downloadAssets(fileId, this.config.outputPath);
     }
 
     return {
@@ -89,6 +112,9 @@ export class FigmaConverter {
     switch (this.config.styleType) {
       case 'styled-components':
         generator = new StyledComponentsGenerator();
+        break;
+      case 'inline':
+        generator = new InlineGenerator();
         break;
       case 'stylesheet':
       default:

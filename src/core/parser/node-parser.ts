@@ -4,18 +4,28 @@
 
 import { ComponentNode, StyleObject, LayoutStyles, VisualStyles, TextStyles } from '../../types';
 import { rgbaToHex, RGBA } from '../../utils/color';
+import { ComponentDetector } from '../detector/component-detector';
 
 export class NodeParser {
+  private detector: ComponentDetector;
+
+  constructor() {
+    this.detector = new ComponentDetector();
+  }
   /**
    * Parse a Figma node into our abstract ComponentNode format
    */
   parse(node: any): ComponentNode {
+    // Use detector to get smart component type
+    const detectedType = this.detector.getComponentType(node);
+    const requiredProps = this.detector.getRequiredProps(node, detectedType);
+
     const componentNode: ComponentNode = {
       id: node.id,
       name: this.sanitizeName(node.name),
-      type: this.mapNodeType(node.type),
+      type: detectedType,
       children: [],
-      props: {},
+      props: { ...requiredProps, characters: node.characters },
       styles: this.parseStyles(node),
       isComponent: this.isComponentNode(node),
     };
