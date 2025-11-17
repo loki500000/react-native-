@@ -20,6 +20,8 @@
     "dev:core": "webpack --watch",
     "stop": "./scripts/stop.sh",
     "test": "lerna run test",
+    "test:integration": "jest --config jest.integration.config.js",
+    "test:all": "yarn test && yarn test:integration",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --write \"src/**/*.{ts,tsx,json}\"",
     "clean": "lerna clean -y && rm -rf node_modules",

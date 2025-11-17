@@ -1,0 +1,281 @@
+/**
+ * Settings Widget Styles
+ */
+
+.settings-widget {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--theia-editor-background);
+  color: var(--theia-foreground);
+  overflow: hidden;
+}
+
+/* Header */
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: var(--theia-panel-background);
+  border-bottom: 1px solid var(--theia-panel-border);
+}
+
+.settings-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.save-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--theia-button-background);
+  color: var(--theia-button-foreground);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: var(--theia-button-hoverBackground);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tabs */
+.settings-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 30px;
+  background-color: var(--theia-panel-background);
+  border-bottom: 1px solid var(--theia-panel-border);
+}
+
+.tab-button {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: transparent;
+  color: var(--theia-descriptionForeground);
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button:hover {
+  color: var(--theia-foreground);
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.tab-button.active {
+  color: var(--theia-button-background);
+  border-bottom-color: var(--theia-button-background);
+}
+
+/* Content */
+.settings-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.settings-tab-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tab-description {
+  margin: 0 0 30px 0;
+  font-size: 14px;
+  color: var(--theia-descriptionForeground);
+}
+
+/* Sections */
+.settings-section {
+  margin-bottom: 40px;
+}
+
+.settings-section h4 {
+  margin: 0 0 15px 0;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Setting Items */
+.setting-item {
+  margin-bottom: 20px;
+}
+
+.setting-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--theia-foreground);
+}
+
+.setting-help {
+  margin: 4px 0 8px 0;
+  font-size: 12px;
+  color: var(--theia-descriptionForeground);
+  line-height: 1.5;
+}
+
+.setting-help code {
+  padding: 2px 6px;
+  background-color: var(--theia-badge-background);
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 11px;
+}
+
+.setting-input,
+.setting-select {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  background-color: var(--theia-input-background);
+  color: var(--theia-input-foreground);
+  border: 1px solid var(--theia-input-border);
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.setting-input:focus,
+.setting-select:focus {
+  outline: none;
+  border-color: var(--theia-focusBorder);
+}
+
+.setting-select {
+  cursor: pointer;
+}
+
+/* Links */
+.settings-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--theia-button-background);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.settings-link:hover {
+  color: var(--theia-button-hoverBackground);
+  text-decoration: underline;
+}
+
+/* Toggle Setting */
+.toggle-setting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--theia-list-inactiveSelectionBackground);
+  border-radius: 6px;
+}
+
+.toggle-setting input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.toggle-setting label {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Info Grid */
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: var(--theia-list-inactiveSelectionBackground);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.info-label {
+  font-weight: 500;
+  color: var(--theia-descriptionForeground);
+}
+
+.info-value {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  color: var(--theia-foreground);
+}
+
+/* Buttons */
+.secondary-button {
+  padding: 8px 16px;
+  font-size: 13px;
+  background-color: var(--theia-list-inactiveSelectionBackground);
+  color: var(--theia-foreground);
+  border: 1px solid var(--theia-panel-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.secondary-button:hover {
+  background-color: var(--theia-list-hoverBackground);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+/* Scrollbar */
+.settings-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.settings-content::-webkit-scrollbar-track {
+  background: var(--theia-scrollbarSlider-background);
+}
+
+.settings-content::-webkit-scrollbar-thumb {
+  background: var(--theia-scrollbarSlider-hoverBackground);
+  border-radius: 4px;
+}
+
+.settings-content::-webkit-scrollbar-thumb:hover {
+  background: var(--theia-scrollbarSlider-activeBackground);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .settings-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .setting-input,
+  .setting-select {
+    max-width: 100%;
+  }
+}

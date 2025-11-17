@@ -1,0 +1,22 @@
+{
+  "name": "@figma-studio/firebase-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Firebase integration",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.2"
+  }
+}

@@ -22,7 +22,8 @@
     "@figma-studio/figma-explorer": "1.0.0",
     "@figma-studio/ai-composer": "1.0.0",
     "@figma-studio/backend-panel": "1.0.0",
-    "@figma-studio/preview-panel": "1.0.0"
+    "@figma-studio/preview-panel": "1.0.0",
+    "@figma-studio/settings": "1.0.0"
   },
   "devDependencies": {
     "@theia/cli": "^1.45.0"
