@@ -1,12 +1,10 @@
 # Figma to React Native Code Generator
 
-[![CI](https://github.com/your-repo/figma-to-react-native/workflows/CI/badge.svg)](https://github.com/your-repo/figma-to-react-native/actions)
-[![npm version](https://badge.fury.io/js/figma-to-react-native.svg)](https://www.npmjs.com/package/figma-to-react-native)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive, production-ready tool to convert Figma designs into React Native code. Built by analyzing and combining the best features from 5 leading Figma-to-code repositories.
+A comprehensive tool to convert Figma designs into React Native code. Built by analysing and combining the best features from 5 leading Figma-to-code repositories. Includes a CLI, a Figma plugin, and a full AI-powered desktop IDE.
 
-**✅ 100% Expo Compatible** - All generated code works perfectly with Expo (no native modules, no ejecting needed). See [EXPO_COMPATIBILITY.md](./EXPO_COMPATIBILITY.md) for details.
+**100% Expo Compatible** — All generated code works with Expo (no native modules, no ejecting needed). See [EXPO_COMPATIBILITY.md](./EXPO_COMPATIBILITY.md) for details.
 
 ---
 
